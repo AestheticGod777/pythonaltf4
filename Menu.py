@@ -1,10 +1,15 @@
 from n_mygameworld import *
 from n_menu_menustage import *
-from n_menu_gamestage import *
+from jatek2 import *
 
 
 def on_key_down(key, mod, unicode):
     menu.on_key_down(key, mod, unicode)
+
+
+def on_key_up(key, mod):
+    menu.on_key_up(key, mod)
+
 
 
 def on_mouse_down(pos, button):

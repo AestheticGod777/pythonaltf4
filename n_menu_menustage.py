@@ -1,7 +1,11 @@
 from n_mygameworld import *
-from n_menu_blank import *
-from n_menu_gamestage import *
+import pygame
+from ures import *
+from jatek2 import *
 #from n_menu_main import scr
+
+HEIGHT = 800
+WIDTH = 1000
 
 class Menustage(MyStage):
 
@@ -20,15 +24,15 @@ class Menustage(MyStage):
     def __init__(self):
         super().__init__()
 
-        menuitem1: MyActor = MyActor("star.png", pos=(100, 100), anchor=(0, 0))
+        menuitem1: MyActor = MyActor("ama.png", pos=(100, 100), anchor=(0, 0))
         self.add_actor(menuitem1)
         menuitem1.set_on_mouse_down_listener(self.menu_Game)
 
-        menuitem2: MyActor = MyActor("star.png", pos=(100, 250), anchor=(0, 0))
+        menuitem2: MyActor = MyActor("ama.png", pos=(100, 250), anchor=(0, 0))
         self.add_actor(menuitem2)
         menuitem2.set_on_mouse_down_listener(self.menu_Exit)
 
-        menuitem3: MyActor = MyActor("star.png", pos=(300, 250), anchor=(0, 0))
+        menuitem3: MyActor = MyActor("ama.png", pos=(300, 250), anchor=(0, 0))
         self.add_actor(menuitem3)
         menuitem3.set_on_mouse_down_listener(self.menu_Blank)
 
@@ -69,5 +73,10 @@ class Menustage(MyStage):
         else:
             self.onscreenstage.on_key_down(key, mod, unicode)
 
+    def on_key_up(self, key, mod):
+        if self == self.onscreenstage:
+            super().on_key_up(key, mod)
+        else:
+            self.onscreenstage.on_key_up(key, mod)
 
 

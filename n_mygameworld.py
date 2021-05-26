@@ -140,7 +140,7 @@ class MyActor(Actor):
 
 
 class MyText:
-    text: str = "The quick brown fox jumps over the lazy dog."
+    text: str = "aaaaaa"
     color = (255, 255, 255)
     alpha: float = 1
     background = None
