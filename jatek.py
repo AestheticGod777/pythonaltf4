@@ -122,7 +122,7 @@ while run:
 
         pontszam += 1
     if jatek_vege == False:
-        if kigyo_frissit > 170:
+        if kigyo_frissit > 20:
             kigyo_frissit = 0
             kigyo_helye = kigyo_helye[-1:] + kigyo_helye[:-1]
             #fel
