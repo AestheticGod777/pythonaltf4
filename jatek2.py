@@ -21,10 +21,12 @@ class GameStage(MyStage):
 
     def __init__(self, menu: 'Menustage'):
         super().__init__()
-        self.m: MyActor = MyActor("kocka.png", pos=(300, 300), anchor=(0, 0))
+        self.m: MyActor = MyActor("ama.png", pos=(200, 300), anchor=(0, 0))
         self.add_actor(self.m)
         self.set_on_key_down_listener(self.keydownlistener)
         self.set_on_key_up_listener(self.keyuplistener)
+        self.m: MyActor = MyActor("kocka.png", pos=(300, 300), anchor=(0, 0))
+        self.add_actor(self.m)
 
     def update(self, deltaTime: float = 0.0166666666666666666666):
         super().update(deltaTime)
