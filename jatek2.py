@@ -1,7 +1,12 @@
 from n_mygameworld import *
 from n_menu_menustage import *
+from random import Random
+
+
+
 
 class GameStage(MyStage):
+
 
     lastkey = None
 
@@ -21,11 +26,11 @@ class GameStage(MyStage):
 
     def __init__(self, menu: 'Menustage'):
         super().__init__()
-        self.m: MyActor = MyActor("ama.png", pos=(200, 300), anchor=(0, 0))
+        self.m: MyActor = MyActor("ama.png", pos=(200, 300), anchor=(16, 16))
         self.add_actor(self.m)
         self.set_on_key_down_listener(self.keydownlistener)
         self.set_on_key_up_listener(self.keyuplistener)
-        self.m: MyActor = MyActor("kocka.png", pos=(300, 300), anchor=(0, 0))
+        self.m: MyActor = MyActor("kocka.png", pos=(300, 300), anchor=(16, 16))
         self.add_actor(self.m)
 
     def update(self, deltaTime: float = 0.0166666666666666666666):
@@ -33,12 +38,16 @@ class GameStage(MyStage):
         if self.lastkey != None:
             if self.lastkey == keys.UP:
                 animate(self.m, pos=(self.m.pos[0], self.m.pos[1] - 1000), duration=4)
+                self.m.set_rotation(360)
             if self.lastkey == keys.DOWN:
                 animate(self.m, pos=(self.m.pos[0], self.m.pos[1] + 1000), duration=4)
+                self.m.set_rotation(180)
             if self.lastkey == keys.LEFT:
                 animate(self.m, pos=(self.m.pos[0] - 1000, self.m.pos[1]), duration=4)
+                self.m.set_rotation(90)
             if self.lastkey == keys.RIGHT:
                 animate(self.m, pos=(self.m.pos[0] + 1000, self.m.pos[1]), duration=4)
+                self.m.set_rotation(270)
 
 
 
