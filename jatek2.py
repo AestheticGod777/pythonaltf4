@@ -1,9 +1,6 @@
 from n_mygameworld import *
 from n_menu_menustage import *
-from random import Random
-
-
-
+import random
 
 class GameStage(MyStage):
 
@@ -12,9 +9,6 @@ class GameStage(MyStage):
 
     def back(self, pos, btn):
         self.menu.menu_Main()
-
-    def jerrymove(self, pos, btn):
-        animate(self.m, pos=pos)
 
     def keyuplistener(self, key, mod):
         print("UP")
@@ -26,8 +20,8 @@ class GameStage(MyStage):
 
     def __init__(self, menu: 'Menustage'):
         super().__init__()
-        self.m: MyActor = MyActor("ama.png", pos=(200, 300), anchor=(16, 16))
-        self.add_actor(self.m)
+        self.b: MyActor = MyActor("ama.png", pos=(300, 200), anchor=(16, 16))
+        self.add_actor(self.b)
         self.set_on_key_down_listener(self.keydownlistener)
         self.set_on_key_up_listener(self.keyuplistener)
         self.m: MyActor = MyActor("kocka.png", pos=(300, 300), anchor=(16, 16))
