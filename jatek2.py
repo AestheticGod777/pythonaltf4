@@ -4,6 +4,12 @@ import random
 
 class GameStage(MyStage):
 
+    grid_x_count = 20
+    grid_y_count = 15
+    food_position = {
+        'x': random.randint(0, grid_x_count - 1),
+        'y': random.randint(0, grid_y_count - 1),
+    }
 
     lastkey = None
 
@@ -20,7 +26,7 @@ class GameStage(MyStage):
 
     def __init__(self, menu: 'Menustage'):
         super().__init__()
-        self.b: MyActor = MyActor("ama.png", pos=(300, 200), anchor=(16, 16))
+        self.b: MyActor = MyActor("ama.png", pos=(200, 200), anchor=(16, 16))
         self.add_actor(self.b)
         self.set_on_key_down_listener(self.keydownlistener)
         self.set_on_key_up_listener(self.keyuplistener)
@@ -42,6 +48,8 @@ class GameStage(MyStage):
             if self.lastkey == keys.RIGHT:
                 animate(self.m, pos=(self.m.pos[0] + 1000, self.m.pos[1]), duration=4)
                 self.m.set_rotation(270)
+        global food_position
+
 
 
 
