@@ -43,8 +43,10 @@ class GameStage(MyStage):
                 self.snake.set_rotation(270)
 
         if self.food.is_on_stage() and self.food.overlaps_with(self.snake):
-            self.food.set_x(10)
-            self.food.set_y(30)
+            self.food.set_x(x=random.randint(0, 200))
+            self.food.set_y(y=random.randint(0, 200))
+
+
 
 
 
