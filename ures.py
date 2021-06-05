@@ -8,7 +8,10 @@ class BlankStage(MyStage):
         if key == keys.ESCAPE:
             self.menu.menu_Main()
 
+
     def __init__(self, menu: 'Menustage'):
         super().__init__()
+        self.bruh: MyActor = MyActor("bruh.png", pos=(200, 100), anchor=(1, 1))
+        self.add_actor(self.bruh)
         self.menu = menu
         self.set_on_key_down_listener(self.keydown)
