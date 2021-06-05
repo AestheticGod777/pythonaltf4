@@ -179,12 +179,12 @@ class MyActor(Actor, MyBaseActor, MyBaseListeners):
 
 
 class MyText(MyBaseActor):
-    text: str = "aaaaa"
+    text: str = "Kigyoú"
     color = (255, 255, 255)
     alpha: float = 1
     background = None
     fontname = None
-    fontsize = 32
+    fontsize = 64
 
     def set_color(self, r: int, g: int, b: int, a: float = 1):
         self.color = (r, g, b)

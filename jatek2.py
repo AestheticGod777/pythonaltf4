@@ -2,10 +2,10 @@ from n_mygameworld import *
 from n_menu_menustage import *
 import random
 
+
 class GameStage(MyStage):
 
     lastkey = None
-
     def back(self, pos, btn):
         self.menu.menu_Main()
 
@@ -43,8 +43,11 @@ class GameStage(MyStage):
                 self.snake.set_rotation(270)
 
         if self.food.is_on_stage() and self.food.overlaps_with(self.snake):
-            self.food.set_x(x=random.randint(0, 200))
-            self.food.set_y(y=random.randint(0, 200))
+            pontszam = 0
+            pontszam += 1
+            print(pontszam)
+            self.food.set_x(x=random.randint(64, 1000))
+            self.food.set_y(y=random.randint(64, 800))
 
 
 
