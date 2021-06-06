@@ -32,8 +32,12 @@ class GameStage(MyStage):
         super().__init__()
         self.borderbal: MyActor = MyActor("border1.png", pos=(0, 0), anchor=(16, 16))
         self.add_actor(self.borderbal)
-        self.borderjobb: MyActor = MyActor("border1.png", pos=(0, 1000), anchor=(16, 16))
+        self.borderjobb: MyActor = MyActor("border1.png", pos=(1020, 0), anchor=(16, 16))
         self.add_actor(self.borderjobb)
+        self.borderfent: MyActor = MyActor("border2.png", pos=(0, 0), anchor=(16, 16))
+        self.add_actor(self.borderfent)
+        self.borderlent: MyActor = MyActor("border2.png", pos=(0, 850), anchor=(16, 16))
+        self.add_actor(self.borderlent)
         self.food: MyActor = MyActor("ama.png", pos=(200, 200), anchor=(16, 16))
         self.add_actor(self.food)
         self.set_on_key_down_listener(self.keydownlistener)
@@ -67,6 +71,12 @@ class GameStage(MyStage):
             self.snake.remove_from_stage()
 
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderjobb):
+            self.snake.remove_from_stage()
+
+        if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderfent):
+            self.snake.remove_from_stage()
+
+        if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderlent):
             self.snake.remove_from_stage()
 
 
