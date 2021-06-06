@@ -5,7 +5,13 @@ import random
 
 class GameStage(MyStage):
 
+    screen_width = 1000
+    screen_height = 800
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    pontszam = 0
+    betutipus = pygame.font.SysFont(None, 40)
     lastkey = None
+
     def back(self, pos, btn):
         self.menu.menu_Main()
 
@@ -16,6 +22,11 @@ class GameStage(MyStage):
     def keydownlistener(self, key, mod, unicode):
         print("DOWN")
         self.lastkey = key
+
+    def pontszam_kirajzolasa(self):
+        pontszam_txt = "Pontszám: " + str(self.pontszam)
+        pontszam_img = self.betutipus.render(pontszam_txt, True, (100, 50, 255))
+        self.screen.blit(pontszam_img, (0, 0))
 
     def __init__(self, menu: 'Menustage'):
         super().__init__()
@@ -43,11 +54,10 @@ class GameStage(MyStage):
                 self.snake.set_rotation(270)
 
         if self.food.is_on_stage() and self.food.overlaps_with(self.snake):
-            pontszam = 0
-            pontszam += 1
-            print(pontszam)
-            self.food.set_x(x=random.randint(64, 1000))
-            self.food.set_y(y=random.randint(64, 800))
+            self.pontszam += 1
+            print(self.pontszam)
+            self.food.set_x(x=random.randint(64, self.screen_width))
+            self.food.set_y(y=random.randint(64, self.screen_height))
 
 
 
