@@ -19,6 +19,10 @@ class GameStage(MyStage):
 
     def __init__(self, menu: 'Menustage'):
         super().__init__()
+        self.borderbal: MyActor = MyActor("border1.png", pos=(0, 0), anchor=(16, 16))
+        self.add_actor(self.borderbal)
+        self.borderjobb: MyActor = MyActor("border1.png", pos=(0, 1000), anchor=(16, 16))
+        self.add_actor(self.borderjobb)
         self.food: MyActor = MyActor("ama.png", pos=(200, 200), anchor=(16, 16))
         self.add_actor(self.food)
         self.set_on_key_down_listener(self.keydownlistener)
@@ -48,6 +52,12 @@ class GameStage(MyStage):
             print(pontszam)
             self.food.set_x(x=random.randint(64, 1000))
             self.food.set_y(y=random.randint(64, 800))
+
+        if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderbal):
+            self.snake.remove_from_stage()
+
+        if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderjobb):
+            self.snake.remove_from_stage()
 
 
 
