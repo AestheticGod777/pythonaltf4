@@ -30,6 +30,7 @@ class GameStage(MyStage):
 
     def __init__(self, menu: 'Menustage'):
         super().__init__()
+        self.vissza: MyActor = MyActor("start.png", pos=(300, 300), anchor=(0, 0))
         self.borderbal: MyActor = MyActor("border1.png", pos=(0, 0), anchor=(16, 16))
         self.add_actor(self.borderbal)
         self.borderjobb: MyActor = MyActor("border1.png", pos=(1020, 0), anchor=(16, 16))
@@ -69,21 +70,18 @@ class GameStage(MyStage):
 
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderbal):
             self.snake.remove_from_stage()
+            self.add_actor(self.vissza)
 
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderjobb):
             self.snake.remove_from_stage()
+            self.add_actor(self.vissza)
 
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderfent):
             self.snake.remove_from_stage()
+            self.add_actor(self.vissza)
 
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderlent):
             self.snake.remove_from_stage()
-
-
-
-
-
-
-
+            self.add_actor(self.vissza)
 
 
