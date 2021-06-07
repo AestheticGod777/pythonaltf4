@@ -39,11 +39,11 @@ class GameStage(MyStage):
         self.add_actor(self.borderfent)
         self.borderlent: MyActor = MyActor("border2.png", pos=(0, 850), anchor=(16, 16))
         self.add_actor(self.borderlent)
-        self.food: MyActor = MyActor("ama.png", pos=(200, 200), anchor=(16, 16))
+        self.food: MyActor = MyActor("ama.png", pos=(self.screen_width / 2, (self.screen_height / 2) - 200), anchor=(16, 16))
         self.add_actor(self.food)
         self.set_on_key_down_listener(self.keydownlistener)
         self.set_on_key_up_listener(self.keyuplistener)
-        self.snake: MyActor = MyActor("kocka.png", pos=(300, 300), anchor=(16, 16))
+        self.snake: MyActor = MyActor("kocka.png", pos=(self.screen_width / 2, self.screen_height / 2), anchor=(16, 16))
         self.add_actor(self.snake)
 
     def update(self, deltaTime: float = 0.0166666666666666666666):
@@ -83,5 +83,3 @@ class GameStage(MyStage):
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderlent):
             self.snake.remove_from_stage()
             self.add_actor(self.vissza)
-
-

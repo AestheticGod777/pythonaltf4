@@ -28,11 +28,11 @@ class Menustage(MyStage):
         self.add_actor(menuitem1)
         menuitem1.set_on_mouse_down_listener(self.menu_Game)
 
-        menuitem2: MyActor = MyActor("ama.png", pos=(100, 250), anchor=(0, 0))
+        menuitem2: MyActor = MyActor("exit.png", pos=(100, 250), anchor=(0, 0))
         self.add_actor(menuitem2)
         menuitem2.set_on_mouse_down_listener(self.menu_Exit)
 
-        menuitem3: MyActor = MyActor("ama.png", pos=(300, 250), anchor=(0, 0))
+        menuitem3: MyActor = MyActor("ama.png", pos=(300, 500), anchor=(0, 0))
         self.add_actor(menuitem3)
         menuitem3.set_on_mouse_down_listener(self.menu_Blank)
 
