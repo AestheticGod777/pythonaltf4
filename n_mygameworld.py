@@ -85,7 +85,7 @@ class MyBaseListeners:
     def set_on_mouse_up_listener(self, func):
         self._on_mouse_up_listener = func
 
-    def set_on_mouse_down_listener(self, func):
+    def set_on_mouse_down_listener(self, func) -> object:
         self._on_mouse_down_listener = func
 
 

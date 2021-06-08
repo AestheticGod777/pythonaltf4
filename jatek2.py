@@ -68,7 +68,7 @@ class GameStage(MyStage):
 
         if self.food.is_on_stage() and self.food.overlaps_with(self.snake):
             self.pontszam += 1
-            sounds.eat.play()
+            sounds.eat_sound.play()
             print(self.pontszam)
             self.food.set_x(x=random.randint(64, self.screen_width))
             self.food.set_y(y=random.randint(64, self.screen_height))
@@ -77,17 +77,17 @@ class GameStage(MyStage):
         if self.pontszam >= 5:
             self.sebesseg = 3
         elif self.pontszam >= 10:
-            self.sebesseg = 2.5
-        elif self.pontszam >= 20:
             self.sebesseg = 2
-        elif self.pontszam >= 50:
+        elif self.pontszam >= 20:
             self.sebesseg = 1.5
-        elif self.pontszam >= 100:
+        elif self.pontszam >= 50:
             self.sebesseg = 1
-        elif self.pontszam >= 250:
+        elif self.pontszam >= 100:
             self.sebesseg = 0.5
-        elif self.pontszam >= 500:
+        elif self.pontszam >= 250:
             self.sebesseg = 0.3
+        elif self.pontszam >= 500:
+            self.sebesseg = 0.2
         elif self.pontszam >= 1000:
             self.sebesseg = 0.1
 
@@ -102,6 +102,4 @@ class GameStage(MyStage):
 
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderlent):
             self.menu.menu_Blank()
-
-
 

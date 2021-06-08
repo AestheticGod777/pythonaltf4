@@ -11,28 +11,41 @@ class Menustage(MyStage):
 
     def menu_Main(self, pos=0, btn=0):
         self.onscreenstage = self
+        sounds.menu_sound.play(loops=100)
+        sounds.death_sound.stop()
+        sounds.game_sound.stop()
 
     def menu_Game(self, pos=0, btn=0):
         self.onscreenstage = GameStage(self)
+        sounds.game_sound.play(loops=100)
+        sounds.menu_sound.stop()
+        sounds.death_sound.stop()
 
     def menu_Blank(self, pos=0, btn=0):
         self.onscreenstage = BlankStage(self)
+        sounds.death_sound.play(loops=100)
+        sounds.menu_sound.stop()
+        sounds.game_sound.stop()
 
     def menu_Exit(self, pos=0, btn=0):
+        sounds.death_sound.stop()
+        sounds.menu_sound.stop()
+        sounds.game_sound.stop()
+        sounds.exit_sound.play()
         exit()
 
     def __init__(self):
         super().__init__()
-
+        sounds.menu_sound.play()
         self.background: MyActor = MyActor(("menubackground.png"), pos=(0, 0), anchor=(0, 0))
         self.add_actor(self.background)
         self.background.set_size(WIDTH, HEIGHT)
 
-        menuitem1: MyActor = MyActor("start.png", pos=(100, 100), anchor=(0, 0))
+        menuitem1: MyActor = MyActor("start.png", pos=(300, 50), anchor=(0, 0))
         self.add_actor(menuitem1)
         menuitem1.set_on_mouse_down_listener(self.menu_Game)
 
-        menuitem2: MyActor = MyActor("exit.png", pos=(100, 250), anchor=(0, 0))
+        menuitem2: MyActor = MyActor("exit.png", pos=(325, 200), anchor=(0, 0))
         self.add_actor(menuitem2)
         menuitem2.set_on_mouse_down_listener(self.menu_Exit)
 
@@ -41,6 +54,7 @@ class Menustage(MyStage):
         menuitem3.set_on_mouse_down_listener(self.menu_Blank)
 
         self.onscreenstage : MyStage = self
+
 
     def draw(self):
         if self == self.onscreenstage:
@@ -55,6 +69,7 @@ class Menustage(MyStage):
             self.onscreenstage.update(deltaTime)
 
     def on_mouse_down(self, pos, button):
+        sounds.click_sound.play()
         if self == self.onscreenstage:
             super(Menustage, self).on_mouse_down(pos, button)
         else:

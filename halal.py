@@ -3,6 +3,9 @@ from n_menu_menustage import *
 
 class BlankStage(MyStage):
 
+    screen_width = 1000
+    screen_height = 800
+
     def menu_Main(self, pos=0, btn=0):
         self.onscreenstage = self
 
@@ -23,6 +26,10 @@ class BlankStage(MyStage):
 
     def __init__(self, menu: 'Menustage'):
         super().__init__()
+        sounds.death_sound.play()
+        self.background: MyActor = MyActor(("halal_background.png"), pos=(0, 0), anchor=(0, 0))
+        self.add_actor(self.background)
+        self.background.set_size(self.screen_width, self.screen_height)
         self.menu = menu
 
         menuitem1: MyActor = MyActor("restart.png", pos=(100, 100), anchor=(0, 0))
