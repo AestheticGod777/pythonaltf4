@@ -1,6 +1,6 @@
 from n_mygameworld import *
 import pygame
-from ures import *
+from halal import *
 from jatek2 import *
 #from n_menu_main import scr
 

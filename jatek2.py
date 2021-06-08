@@ -27,6 +27,9 @@ class GameStage(MyStage):
 
     def __init__(self, menu: 'Menustage'):
         super().__init__()
+        self.background: MyActor = MyActor(("background.png"), pos=(0, 0), anchor=(0, 0))
+        self.add_actor(self.background)
+        self.background.set_size(self.screen_width, self.screen_height)
         self.borderbal: MyActor = MyActor("border1.png", pos=(0, 0), anchor=(16, 16))
         self.add_actor(self.borderbal)
         self.borderjobb: MyActor = MyActor("border1.png", pos=(1020, 0), anchor=(16, 16))
@@ -52,19 +55,20 @@ class GameStage(MyStage):
         if self.lastkey != None:
             if self.lastkey == keys.UP:
                 animate(self.snake, pos=(self.snake.pos[0], self.snake.pos[1] - 1000), duration=self.sebesseg)
-                self.snake.set_rotation(360)
+                self.snake.set_rotation(90)
             if self.lastkey == keys.DOWN:
                 animate(self.snake, pos=(self.snake.pos[0], self.snake.pos[1] + 1000), duration=self.sebesseg)
-                self.snake.set_rotation(180)
+                self.snake.set_rotation(90)
             if self.lastkey == keys.LEFT:
                 animate(self.snake, pos=(self.snake.pos[0] - 1000, self.snake.pos[1]), duration=self.sebesseg)
-                self.snake.set_rotation(90)
+                self.snake.set_rotation(360)
             if self.lastkey == keys.RIGHT:
                 animate(self.snake, pos=(self.snake.pos[0] + 1000, self.snake.pos[1]), duration=self.sebesseg)
-                self.snake.set_rotation(270)
+                self.snake.set_rotation(360)
 
         if self.food.is_on_stage() and self.food.overlaps_with(self.snake):
             self.pontszam += 1
+            sounds.eat.play()
             print(self.pontszam)
             self.food.set_x(x=random.randint(64, self.screen_width))
             self.food.set_y(y=random.randint(64, self.screen_height))
