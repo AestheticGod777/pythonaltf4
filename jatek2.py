@@ -30,7 +30,6 @@ class GameStage(MyStage):
 
     def __init__(self, menu: 'Menustage'):
         super().__init__()
-        self.vissza: MyActor = MyActor("start.png", pos=(300, 300), anchor=(0, 0))
         self.borderbal: MyActor = MyActor("border1.png", pos=(0, 0), anchor=(16, 16))
         self.add_actor(self.borderbal)
         self.borderjobb: MyActor = MyActor("border1.png", pos=(1020, 0), anchor=(16, 16))
@@ -45,6 +44,7 @@ class GameStage(MyStage):
         self.set_on_key_up_listener(self.keyuplistener)
         self.snake: MyActor = MyActor("kocka.png", pos=(self.screen_width / 2, self.screen_height / 2), anchor=(16, 16))
         self.add_actor(self.snake)
+        self.menu=menu
 
     def update(self, deltaTime: float = 0.0166666666666666666666):
         super().update(deltaTime)
@@ -69,17 +69,13 @@ class GameStage(MyStage):
             self.food.set_y(y=random.randint(64, self.screen_height))
 
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderbal):
-            self.snake.remove_from_stage()
-            self.add_actor(self.vissza)
+            self.menu.menu_Blank()
 
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderjobb):
-            self.snake.remove_from_stage()
-            self.add_actor(self.vissza)
+            self.menu.menu_Blank()
 
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderfent):
-            self.snake.remove_from_stage()
-            self.add_actor(self.vissza)
+            self.menu.menu_Blank()
 
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderlent):
-            self.snake.remove_from_stage()
-            self.add_actor(self.vissza)
+            self.menu.menu_Blank()
