@@ -49,7 +49,7 @@ class Menustage(MyStage):
         self.add_actor(menuitem2)
         menuitem2.set_on_mouse_down_listener(self.menu_Exit)
 
-        menuitem3: MyActor = MyActor("ama.png", pos=(300, 500), anchor=(0, 0))
+        menuitem3: MyActor = MyActor("ama.png", pos=(900, 700), anchor=(0, 0))
         self.add_actor(menuitem3)
         menuitem3.set_on_mouse_down_listener(self.menu_Blank)
 
