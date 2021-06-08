@@ -9,8 +9,10 @@ class GameStage(MyStage):
     screen_height = 800
     screen = pygame.display.set_mode((screen_width, screen_height))
     pontszam = 0
-    betutipus = pygame.font.SysFont(None, 40)
     lastkey = None
+    sebesseg = 4
+    teszt = 5
+
 
     def back(self, pos, btn):
         self.menu.menu_Main()
@@ -22,11 +24,6 @@ class GameStage(MyStage):
     def keydownlistener(self, key, mod, unicode):
         print("DOWN")
         self.lastkey = key
-
-    def pontszam_kirajzolasa(self):
-        pontszam_txt = "Pontszám: " + str(self.pontszam)
-        pontszam_img = self.betutipus.render(pontszam_txt, True, (100, 50, 255))
-        self.screen.blit(pontszam_img, (0, 0))
 
     def __init__(self, menu: 'Menustage'):
         super().__init__()
@@ -45,21 +42,25 @@ class GameStage(MyStage):
         self.snake: MyActor = MyActor("kocka.png", pos=(self.screen_width / 2, self.screen_height / 2), anchor=(16, 16))
         self.add_actor(self.snake)
         self.menu=menu
+        self.score: MyLabel = MyLabel()
+        self.score.set_x(self.screen_height - self.screen_height + 10)
+        self.score.set_y(self.screen_width - self.screen_width + 10)
+        self.add_actor(self.score)
 
     def update(self, deltaTime: float = 0.0166666666666666666666):
         super().update(deltaTime)
         if self.lastkey != None:
             if self.lastkey == keys.UP:
-                animate(self.snake, pos=(self.snake.pos[0], self.snake.pos[1] - 1000), duration=4)
+                animate(self.snake, pos=(self.snake.pos[0], self.snake.pos[1] - 1000), duration=self.sebesseg)
                 self.snake.set_rotation(360)
             if self.lastkey == keys.DOWN:
-                animate(self.snake, pos=(self.snake.pos[0], self.snake.pos[1] + 1000), duration=4)
+                animate(self.snake, pos=(self.snake.pos[0], self.snake.pos[1] + 1000), duration=self.sebesseg)
                 self.snake.set_rotation(180)
             if self.lastkey == keys.LEFT:
-                animate(self.snake, pos=(self.snake.pos[0] - 1000, self.snake.pos[1]), duration=4)
+                animate(self.snake, pos=(self.snake.pos[0] - 1000, self.snake.pos[1]), duration=self.sebesseg)
                 self.snake.set_rotation(90)
             if self.lastkey == keys.RIGHT:
-                animate(self.snake, pos=(self.snake.pos[0] + 1000, self.snake.pos[1]), duration=4)
+                animate(self.snake, pos=(self.snake.pos[0] + 1000, self.snake.pos[1]), duration=self.sebesseg)
                 self.snake.set_rotation(270)
 
         if self.food.is_on_stage() and self.food.overlaps_with(self.snake):
@@ -67,6 +68,24 @@ class GameStage(MyStage):
             print(self.pontszam)
             self.food.set_x(x=random.randint(64, self.screen_width))
             self.food.set_y(y=random.randint(64, self.screen_height))
+        self.score.set_text("Score: " + str(self.pontszam))
+
+        if self.pontszam >= 5:
+            self.sebesseg = 3
+        elif self.pontszam >= 10:
+            self.sebesseg = 2.5
+        elif self.pontszam >= 20:
+            self.sebesseg = 2
+        elif self.pontszam >= 50:
+            self.sebesseg = 1.5
+        elif self.pontszam >= 100:
+            self.sebesseg = 1
+        elif self.pontszam >= 250:
+            self.sebesseg = 0.5
+        elif self.pontszam >= 500:
+            self.sebesseg = 0.3
+        elif self.pontszam >= 1000:
+            self.sebesseg = 0.1
 
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderbal):
             self.menu.menu_Blank()
@@ -79,3 +98,6 @@ class GameStage(MyStage):
 
         if self.snake.is_on_stage() and self.snake.overlaps_with(self.borderlent):
             self.menu.menu_Blank()
+
+
+
